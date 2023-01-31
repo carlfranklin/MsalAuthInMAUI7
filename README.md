@@ -1221,6 +1221,8 @@ Click on **Add URI**, and add the following value `urn:ietf:wg:oauth:2.0:oob`, t
 
 ![Add URI](images/09b2cead81fa59f18a00f7927425a7bce6348549878bf960b72ba2b6a817f8f6.png)  
 
+>:point_up: In MSAL.NET, the default value of the redirect URI is set to "urn:ietf:wg:oauth:2.0:oob". However, this is not recommended as it is prone to change in an upcoming major release, causing a breaking change. So, using a custom redirect URI, is a better approach.
+
 Back in **Visual Studio**, change the target to **Windows**.
 
 ![Windows](images/0029ffde01d5ed2ec10ad127bc0652d9056fac930cce5a6b6e0419389303d8a3.png)  
