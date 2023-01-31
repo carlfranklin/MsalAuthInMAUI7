@@ -18,10 +18,11 @@
     - [Configure our `.NET MAUI` application to use `MSAL.NET` to authenticate users and get an access token](#configure-our-net-maui-application-to-use-msalnet-to-authenticate-users-and-get-an-access-token)
       - [PCAWrapper.cs](#pcawrappercs)
       - [PlatformConfig.cs](#platformconfigcs)
-    - [Running on Android:](#running-on-android)
+    - [Running on Android](#running-on-android)
       - [Call our secure `ASP.NET Core Web API` application from our `.NET MAUI` application](#call-our-secure-aspnet-core-web-api-application-from-our-net-maui-application)
     - [Running on iOS](#running-on-ios)
       - [Apple Developer Account](#apple-developer-account)
+    - [Running on Windows](#running-on-windows)
   - [Summary](#summary)
   - [Complete Code](#complete-code)
   - [Resources](#resources)
@@ -736,7 +737,7 @@ public partial class MainPage : ContentPage
 }
 ```
 
-### Running on Android:
+### Running on Android
 
 I'm going to use an Android emulator. If you have an Android phone connected to your machine, you can use that instead. In either case, the configuration and code will not have to change.
 
@@ -1206,6 +1207,32 @@ Now, the **Weather Forecast** button will be enabled, and after clicking it, you
 
 <img src="md-images/2a452baa486a659422a652b0bba82c30bd56528373a2106963b1a4fc03c4eadc.png" alt="img" style="zoom:67%;" />
 
+### Running on Windows
+
+To run the application on Windows, you need to add a new redirect URI to your Azure Tenant App Registration.
+
+Go back to the **Azure Portal**, go to your **App registration**, and select the app.
+
+Under the **Authentication** option, make sure **Mobile and desktop applications** is expanded add a new *Redirect URI*.
+
+![Windows Redirect URI](images/7e2dce030ac6a38ade0182d6c55c28464a15e7b879da493797f4c3f267283f97.png)  
+
+Click on **Add URI**, and add the following value `urn:ietf:wg:oauth:2.0:oob`, then click on **Save**.
+
+![Add URI](images/09b2cead81fa59f18a00f7927425a7bce6348549878bf960b72ba2b6a817f8f6.png)  
+
+Back in **Visual Studio**, change the target to **Windows**.
+
+![Windows](images/0029ffde01d5ed2ec10ad127bc0652d9056fac930cce5a6b6e0419389303d8a3.png)  
+
+Run the application.
+
+You should be able to authenticate, get the access token, and call the secure web api successfully to display the weather data.
+
+![Access Token on Windows](images/2430d8bd48532a3278db9804833c605012d5e0cf833e9755404bb257dd89f1f2.png)  
+
+![WeatherForecast data on Windows](images/4bb19085569da6eb585629607fbc3a4cabe09be3216777c0c1d0be7d34bba854.png)  
+
 ## Summary
 
 In this episode, we built a secure `ASP.NET Core Web API` application, and we deployed it to `Azure`. Then, we built a `.NET Multi-platform App UI (.NET MAUI)` application, and leveraged the `Microsoft Authentication Library (MSAL)` for `.NET` to get an access token, and used the token call the Web API application securely.
@@ -1222,15 +1249,15 @@ The complete code for this demo can be found in the link below.
 
 ## Resources
 
-| Resource                                           | Url                                                                                                        |
-| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| The .NET Show with Carl Franklin                             | https://thedotnetshow.com                                    |
-| Download .NET                                                | <https://dotnet.microsoft.com/en-us/download>                |
-| Overview of the Microsoft Authentication Library (MSAL)      | <https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-overview> |
-| Minimal APIs overview                                        | <https://docs.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-6.0> |
-| Microsoft Authentication Library (MSAL) for .NET, UWP, .NET Core, Xamarin Android and iOS | <https://github.com/AzureAD/microsoft-authentication-library-for-dotnet> |
-| Microsoft identity platform code samples                     | https://docs.microsoft.com/en-us/azure/active-directory/develop/sample-v2-code |
-| Creating API Keys for App Store Connect API        | <https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api> |
-| Using web browsers (MSAL.NET)                      | <https://learn.microsoft.com/en-us/azure/active-directory/develop/msal-net-web-browsers>                   |
-| Considerations for using Xamarin iOS with MSAL.NET | <https://learn.microsoft.com/en-us/azure/active-directory/develop/msal-net-xamarin-ios-considerations>     |
-| Entitlements                                       | <https://learn.microsoft.com/en-us/dotnet/maui/ios/entitlements?view=net-maui-7.0&tabs=vs>                 |
+| Resource                                                                                  | Url                                                                                                        |
+| ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| The .NET Show with Carl Franklin                                                          | https://thedotnetshow.com                                                                                  |
+| Download .NET                                                                             | <https://dotnet.microsoft.com/en-us/download>                                                              |
+| Overview of the Microsoft Authentication Library (MSAL)                                   | <https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-overview>                            |
+| Minimal APIs overview                                                                     | <https://docs.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-6.0>               |
+| Microsoft Authentication Library (MSAL) for .NET, UWP, .NET Core, Xamarin Android and iOS | <https://github.com/AzureAD/microsoft-authentication-library-for-dotnet>                                   |
+| Microsoft identity platform code samples                                                  | https://docs.microsoft.com/en-us/azure/active-directory/develop/sample-v2-code                             |
+| Creating API Keys for App Store Connect API                                               | <https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api> |
+| Using web browsers (MSAL.NET)                                                             | <https://learn.microsoft.com/en-us/azure/active-directory/develop/msal-net-web-browsers>                   |
+| Considerations for using Xamarin iOS with MSAL.NET                                        | <https://learn.microsoft.com/en-us/azure/active-directory/develop/msal-net-xamarin-ios-considerations>     |
+| Entitlements                                                                              | <https://learn.microsoft.com/en-us/dotnet/maui/ios/entitlements?view=net-maui-7.0&tabs=vs>                 |
