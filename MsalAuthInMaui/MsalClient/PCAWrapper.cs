@@ -72,7 +72,7 @@ public class PCAWrapper
                                 .WithSystemWebViewOptions(systemWebViewOptions)
                                 .ExecuteAsync()
                                 .ConfigureAwait(false);
-#elif ANDROID
+#else
         return await PCA.AcquireTokenInteractive(scopes)
                                 .WithAuthority(Authority)
                                 .WithTenantId(TenantId)
